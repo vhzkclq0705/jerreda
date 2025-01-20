@@ -18,6 +18,8 @@ build-backend = "pdm.backend"
 [tool.pdm]
 distribution = true
 
+[project.scripts]
+jerreda = "jerreda.cli:group_by_count"
 
 [dependency-groups]
 eda = [
