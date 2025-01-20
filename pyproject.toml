@@ -23,6 +23,6 @@ distribution = true
 eda = [
     "jupyterlab>=4.3.4",
 ]
-dev = [
+test = [
     "pytest>=8.3.4",
 ]
