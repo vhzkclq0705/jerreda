@@ -1,0 +1,19 @@
+[project]
+name = "jerreda"
+version = "0.1.0"
+description = "EDA"
+authors = [
+    {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
+]
+dependencies = []
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
