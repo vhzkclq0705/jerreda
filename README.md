@@ -25,7 +25,7 @@ $ git push
 $ pdm publish
 
 View at:
-https://pypi.org/project/jerreda/0.3.0/
+https://pypi.org/project/jerreda/0.3.1/
 ```
 
 ### EDA
