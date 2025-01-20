@@ -18,6 +18,14 @@ $ source .venv/bin/activate
 $ pdm add pandas
 $ pdm add -dG add jupyterlab
 $ pdm add president-speech
+
+$ git add .
+$ git commit -a
+$ git push
+$ pdm publish
+
+View at:
+https://pypi.org/project/jerreda/0.3.0/
 ```
 
 ### EDA
