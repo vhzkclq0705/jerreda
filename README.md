@@ -2,6 +2,16 @@
 
 [![LGTM](https://lgtm.lol/p/843)](https://lgtm.lol/i/843)
 
+## USE
+
+### group_by_count()
+```bash
+$ pip install jerreda
+$ python
+>>> from jerreda.cli import group_by_count
+>>> group_by_count()
+```
+
 ### DEV
 ```bash
 $ source .venv/bin/activate
