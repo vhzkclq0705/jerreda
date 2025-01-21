@@ -4,12 +4,12 @@
 
 ## USE
 
-### group_by_count()
+### group_by_count(keyword: str)
 ```bash
 $ pip install jerreda
 $ python
 >>> from jerreda.cli import group_by_count
->>> group_by_count()
+>>> group_by_count(<KEYWORD>)
 ```
 
 ### DEV
@@ -25,7 +25,7 @@ $ git push
 $ pdm publish
 
 View at:
-https://pypi.org/project/jerreda/0.3.1/
+https://pypi.org/project/jerreda/0.3.3/
 ```
 
 ### EDA
