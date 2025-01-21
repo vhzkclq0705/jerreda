@@ -5,7 +5,7 @@ description = "EDA"
 authors = [
     {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
 ]
-dependencies = ["pandas>=2.2.3", "president-speech>=0.9.1", "typer>=0.15.1"]
+dependencies = ["pandas>=2.2.3", "president-speech>=0.9.1", "typer>=0.15.1", "pytest-cov>=6.0.0"]
 requires-python = ">=3.10"
 readme = "README.md"
 license = {text = "MIT"}
