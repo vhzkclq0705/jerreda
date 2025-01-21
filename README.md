@@ -9,7 +9,7 @@
 $ pip install jerreda
 $ python
 >>> from jerreda.cli import group_by_count
->>> group_by_count(<KEYWORD>)
+>>> group_by_count(keyword: str=<KEYWORD>, asc: bool=<IS_ASC>, rcnt: int=<NUMBER>)
 ```
 
 ### DEV
@@ -25,7 +25,7 @@ $ git push
 $ pdm publish
 
 View at:
-https://pypi.org/project/jerreda/0.3.4/
+https://pypi.org/project/jerreda/0.3.5/
 ```
 
 ### EDA
