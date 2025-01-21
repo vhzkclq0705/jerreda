@@ -1,6 +1,6 @@
 [project]
 name = "jerreda"
-version = "0.3.1"
+version = "0.3.3"
 description = "EDA"
 authors = [
     {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
@@ -19,7 +19,7 @@ build-backend = "pdm.backend"
 distribution = true
 
 [project.scripts]
-jerreda = "jerreda.cli:group_by_count"
+jerreda = "jerreda.cli:main"
 
 [dependency-groups]
 eda = [
