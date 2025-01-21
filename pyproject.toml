@@ -1,6 +1,6 @@
 [project]
 name = "jerreda"
-version = "0.3.3"
+version = "0.3.4"
 description = "EDA"
 authors = [
     {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
