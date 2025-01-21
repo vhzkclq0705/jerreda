@@ -6,6 +6,10 @@ def group_by_count(keyword: str) -> str:
     data_path = get_parquet_full_path()
     df = pd.read_parquet(data_path)
     f_df = df[df['speech_text'].str.contains(keyword, case=False)]
+
+    if f_df.empty:
+        return None
+
     rdf = f_df.groupby('president').size().reset_index(name='count')
     sdf = rdf.sort_values(by='count', ascending=False).reset_index(drop=True)
     result = sdf.to_string(index=False)
