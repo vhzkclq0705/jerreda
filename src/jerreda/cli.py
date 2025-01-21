@@ -1,8 +1,8 @@
-import typer
 from president_speech.db.parquet_interpreter import get_parquet_full_path
 import pandas as pd
+import typer
 
-def group_by_count(keyword: str) -> str:
+def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
     data_path = get_parquet_full_path()
     df = pd.read_parquet(data_path)
     f_df = df[df['speech_text'].str.contains(keyword, case=False)]
@@ -11,17 +11,17 @@ def group_by_count(keyword: str) -> str:
         return None
 
     rdf = f_df.groupby('president').size().reset_index(name='count')
-    sdf = rdf.sort_values(by='count', ascending=False).reset_index(drop=True)
-    result = sdf.to_string(index=False)
+    sdf = rdf.sort_values(by='count', ascending=asc).reset_index(drop=True)
+    cdf = sdf.head(rcnt)
     
-    print(result)
-    return result
+    return cdf
 
-def entry_point(keyword: str = typer.Argument(..., help='검색 키워드')):
-    group_by_count(keyword)
+def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12):
+    df = group_by_count(keyword, asc, rcnt)
+    if df is None:
+        print("해당 데이터가 존재하지 않습니다.")
+    else:
+        print(df.to_string(index=False))
 
-def main():
-    typer.run(entry_point)
-
-if __name__ == "__main__":
-    typer.run(entry_point)
+def entry_point():
+    typer.run(print_group_by_count)

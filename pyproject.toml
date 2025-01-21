@@ -1,6 +1,6 @@
 [project]
 name = "jerreda"
-version = "0.3.4"
+version = "0.3.5"
 description = "EDA"
 authors = [
     {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
@@ -19,7 +19,7 @@ build-backend = "pdm.backend"
 distribution = true
 
 [project.scripts]
-jerreda = "jerreda.cli:main"
+jerreda = "jerreda.cli:entry_point"
 
 [dependency-groups]
 eda = [
@@ -28,3 +28,7 @@ eda = [
 test = [
     "pytest>=8.3.4",
 ]
+
+[project.urls]
+Homepage = "https://github.com/vhzkclq0705/jerreda"
+Issues = "https://github.com/vhzkclq0705/jerreda/issues"
