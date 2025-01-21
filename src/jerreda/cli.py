@@ -8,7 +8,7 @@ def group_by_count(keyword: str) -> str:
     f_df = df[df['speech_text'].str.contains(keyword, case=False)]
     rdf = f_df.groupby('president').size().reset_index(name='count')
     sdf = rdf.sort_values(by='count', ascending=False).reset_index(drop=True)
-    result = sdf.to_string(index=False))
+    result = sdf.to_string(index=False)
     
     print(result)
     return result
