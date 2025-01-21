@@ -25,7 +25,7 @@ $ git push
 $ pdm publish
 
 View at:
-https://pypi.org/project/jerreda/0.3.3/
+https://pypi.org/project/jerreda/0.3.4/
 ```
 
 ### EDA
@@ -35,6 +35,13 @@ $ jupyter lab
 
 ```
 
+### TEST
+```
+# $ pdm add -dG test pytest
+$ pytest
+$ pytest -s
+$ pytest --cov
+```
 
 ## REF
 - [Install Jupyterlab](https://jupyter.org/install)
