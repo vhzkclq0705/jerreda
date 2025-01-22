@@ -1,5 +1,25 @@
 import pandas as pd
-from jerreda.cli import group_by_count
+from jerreda.cli import group_by_count, group_by_count_to_dict
+
+def test_dictionary():
+    input_dict = group_by_count_to_dict(keyword="자유", asc=True, rcnt=12)
+    expected_dict = {
+        "박정희": 513,
+        "이승만": 438,
+        "노태우": 399,
+        "김대중": 305,
+        "문재인": 275,
+        "김영삼": 274,
+        "이명박": 262,
+        "전두환": 242,
+        "노무현": 230,
+        "박근혜": 111,
+        "최규하": 14,
+        "윤보선": 1
+    }
+
+    for k, v in input_dict.items():
+        assert expected_dict[k] == v
 
 def test_search_exception():
     row_cnt = 13

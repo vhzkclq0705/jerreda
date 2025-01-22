@@ -1,6 +1,7 @@
 from president_speech.db.parquet_interpreter import get_parquet_full_path
 import pandas as pd
 import typer
+from typing import Dict
 
 def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: bool=True) -> pd.DataFrame:
     # 데이터 받아오기
@@ -43,7 +44,7 @@ def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
     
     return cdf
 
-def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12):
+def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12) -> Dict[str, int]:
     data_path = get_parquet_full_path()
     df = pd.read_parquet(data_path)
     fdf = df[df['speech_text'].str.contains(keyword, case=False)]
@@ -52,6 +53,8 @@ def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12):
 
     dict = sdf.set_index('president')['count'].to_dict()
     print(dict)
+    
+    return dict
 
 def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12):
     df = group_by_count(keyword, asc, rcnt)
