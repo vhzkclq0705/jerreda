@@ -22,19 +22,13 @@ def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: 
     ).reset_index()
 
     # 'count'를 기준으로 정렬하고, rcnt만큼의 데이터만 위에서 부터 가져옴
-    sdf = gdf.sort_values(by='count', ascending=asc).head(rcnt)
-
-    # keyword_sum에 따른 결과 반환
-    if keyword_sum:
-        return sdf
-    else:
-        return sdf[]
+    sdf = gdf.sort_values(by='count', ascending=asc).head(rcnt).reset_index(drop=True)
     
-
-    print(gdf)
-    return gdf
-
-
+    if not keyword_sum:
+        sdf = sdf[['president', 'count']]
+    
+    print(sdf)
+    return sdf
 
 def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
     data_path = get_parquet_full_path()
