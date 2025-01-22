@@ -27,7 +27,6 @@ def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: 
     if not keyword_sum:
         sdf = sdf[['president', 'count']]
     
-    print(sdf)
     return sdf
 
 def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
@@ -46,13 +45,14 @@ def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
 
 def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12):
     df = group_by_count(keyword, asc, rcnt)
-    if df is None:
-        print("해당 데이터가 존재하지 않습니다.")
-    else:
-        print(df.to_string(index=False))
+    print(df.to_string(index=False))
+
+def print_add_keyword_count(keyword: str, asc: bool=False, rcnt: int=12, keyword_sum:bool=True):
+    df = add_keyword_count(keyword, asc, rcnt, keyword_sum)
+    print(df.to_string(index=False))
 
 def entry_point():
     typer.run(print_group_by_count)
 
 def entry_point_cnt():
-    typer.run(add_keyword_count)
+    typer.run(print_add_keyword_count)
