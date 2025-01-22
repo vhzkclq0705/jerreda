@@ -43,6 +43,16 @@ def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
     
     return cdf
 
+def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12):
+    data_path = get_parquet_full_path()
+    df = pd.read_parquet(data_path)
+    fdf = df[df['speech_text'].str.contains(keyword, case=False)]
+    rdf = fdf.groupby('president').size().reset_index(name='count')
+    sdf = rdf.sort_values(by='count', ascending=asc).reset_index(drop=True).head(rcnt)
+
+    dict = sdf.set_index('president')['count'].to_dict()
+    print(dict)
+
 def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12):
     df = group_by_count(keyword, asc, rcnt)
     print(df.to_string(index=False))
@@ -51,8 +61,12 @@ def print_add_keyword_count(keyword: str, asc: bool=False, rcnt: int=12, keyword
     df = add_keyword_count(keyword, asc, rcnt, keyword_sum)
     print(df.to_string(index=False))
 
+
 def entry_point():
     typer.run(print_group_by_count)
 
 def entry_point_cnt():
     typer.run(print_add_keyword_count)
+
+def entry_point_dict():
+    typer.run(group_by_count_to_dict)
