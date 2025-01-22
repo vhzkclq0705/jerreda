@@ -1,6 +1,10 @@
 import pandas as pd
 from jerreda.cli import group_by_count
 
+def test_dictionary():
+    df = group_by_count("자유")
+    
+
 def test_search_exception():
     row_cnt = 13
     df = group_by_count(keyword="자유", asc=True, rcnt=row_cnt)

@@ -1,6 +1,6 @@
 [project]
 name = "jerreda"
-version = "0.3.5"
+version = "0.4.0"
 description = "EDA"
 authors = [
     {name = "vhzkclq0705", email = "dhwns1513@gmail.com"},
@@ -20,6 +20,8 @@ distribution = true
 
 [project.scripts]
 jerreda = "jerreda.cli:entry_point"
+jerreda-cnt = "jerreda.cli:entry_point_cnt"
+jerreda-dict = "jerreda.cli:entry_point_dict"
 
 [dependency-groups]
 eda = [
