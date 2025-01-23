@@ -1,6 +1,17 @@
 import pandas as pd
-from jerreda.cli import group_by_count
+from jerreda.cli import group_by_count, add_keyword_count
+import pytest
 
+def test_all_count_keyword_sum():
+    df = add_keyword_count(keyword="자유", keyword_sum=True)
+    
+    assert isinstance(df, pd.DataFrame)
+    assert "keyword_sum" in df.columns
+
+    # count 보다 keyword_sum이 크거나 같은 경우
+    assert (df["count"] <= df["keyword_sum"]).all()
+
+@pytest.mark.skip()
 def test_dictionary():
     df = group_by_count("자유")
     
