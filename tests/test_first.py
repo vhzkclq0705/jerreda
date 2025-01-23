@@ -4,6 +4,12 @@ from jerreda.cli import group_by_count
 def test_dictionary():
     df = group_by_count("자유")
     
+    assert isinstance(df, pd.DataFrame)
+    assert len(df) == 12
+
+    for p_name, s_count in president_speeches.items():
+        president_row = df[df['president'] == p_name]
+        assert president_row.iloc[0]['count'] == s_count
 
 def test_search_exception():
     row_cnt = 13
