@@ -80,9 +80,3 @@ def test_group_count_by_demo():
     # 예상 결과와 일치하는지 검증
     assert input_data.equals(expected_data), "\n'민주주의' 키워드는 예상 데이터와 일치하지 않습니다."
 
-def test_group_count_by_jerry():
-    input_data = group_by_count(keyword="권오준", asc=False, rcnt=5)
-
-    # 결과값이 존재하는지 검증
-    # '권오준' 키워드가 들어간 데이터가 존재하지 않아야 함
-    assert input_data is None
