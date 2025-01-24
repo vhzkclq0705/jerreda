@@ -1,7 +1,12 @@
 from president_speech.db.parquet_interpreter import get_parquet_full_path
 import pandas as pd
-import typer
+import matplotlib as plt
+import termplotlib as tpl
+from tabulate import tabulate
+from tqdm import tqdm
+from time import sleep
 from typing import Dict
+import typer
 
 def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: bool=True) -> pd.DataFrame:
     # 데이터 받아오기
@@ -30,19 +35,29 @@ def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: 
     
     return sdf
 
-def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
+def group_by_count(keyword: str, asc: bool=False, rcnt: int=12, keyword_sum: bool=False) -> pd.DataFrame:
     data_path = get_parquet_full_path()
     df = pd.read_parquet(data_path)
-    f_df = df[df['speech_text'].str.contains(keyword, case=False)]
+    fdf = df[df['speech_text'].str.contains(keyword, case=False)]
 
-    if f_df.empty:
-        return None
+    if(keyword_sum):
+        sdf = add_keyword_count(keyword, asc, rcnt, keyword_sum)
+    else:
+        gdf = fdf.groupby('president').size().reset_index(name='count')
+        sdf = gdf.sort_values(by='count', ascending=asc).reset_index(drop=True)
 
-    rdf = f_df.groupby('president').size().reset_index(name='count')
-    sdf = rdf.sort_values(by='count', ascending=asc).reset_index(drop=True)
-    cdf = sdf.head(rcnt)
+    rdf = sdf.head(rcnt)
+
+    # Progress Bar
+    l = rdf.shape[0] * rdf.shape[1]
+    for i in tqdm(range(l)):
+        sleep(0.1)
     
-    return cdf
+    # Tabulate
+    t = tabulate(rdf, headers=["president", "count"], tablefmt="github")
+    print(t)
+    
+    return rdf
 
 def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12) -> Dict[str, int]:
     data_path = get_parquet_full_path()
