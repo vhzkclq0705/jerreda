@@ -46,6 +46,11 @@ def group_by_count(keyword: str, asc: bool=False, rcnt: int=12) -> pd.DataFrame:
     rdf = f_df.groupby('president').size().reset_index(name='count')
     sdf = rdf.sort_values(by='count', ascending=asc).reset_index(drop=True)
     cdf = sdf.head(rcnt)
+
+    # Progress Bar
+    l = cdf.shape[0] * cdf.shape[1]
+    for i in tqdm(range(l)):
+        sleep(0.1)
     
     return cdf
 
