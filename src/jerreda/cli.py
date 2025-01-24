@@ -1,7 +1,12 @@
 from president_speech.db.parquet_interpreter import get_parquet_full_path
 import pandas as pd
-import typer
+import matplotlib as plt
+import termplotlib as tpl
+from tabulate import tabulate
+from tqdm import tqdm
+from time import sleep
 from typing import Dict
+import typer
 
 def add_keyword_count(keyword: str, asc: bool=False, rcnt: int=10, keyword_sum: bool=True) -> pd.DataFrame:
     # 데이터 받아오기
