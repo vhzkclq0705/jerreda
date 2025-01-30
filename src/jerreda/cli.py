@@ -54,8 +54,14 @@ def group_by_count(keyword: str, asc: bool=False, rcnt: int=12, keyword_sum: boo
         sleep(0.1)
     
     # Tabulate
-    t = tabulate(rdf, headers=["president", "count"], tablefmt="github")
+    headers = ["president", "count", "keyword_sum"] if keyword_sum else rdf.columns
+    t = tabulate(rdf, headers=headers, tablefmt="github", showindex=False)
     print(t)
+
+    # termplotlib
+    fig = tpl.figure()
+    fig.barh(rdf["count"], rdf["president"], force_ascii=True)
+    fig.show()
     
     return rdf
 
@@ -71,8 +77,8 @@ def group_by_count_to_dict(keyword: str, asc: bool=False, rcnt: int=12) -> Dict[
     
     return dict
 
-def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12):
-    df = group_by_count(keyword, asc, rcnt)
+def print_group_by_count(keyword: str, asc: bool=False, rcnt: int=12, keyword_sum:bool=False):
+    df = group_by_count(keyword, asc, rcnt, keyword_sum)
     print(df.to_string(index=False))
 
 def print_add_keyword_count(keyword: str, asc: bool=False, rcnt: int=12, keyword_sum:bool=True):
